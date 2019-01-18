@@ -1,0 +1,1 @@
+this is mysq first java pro ject
