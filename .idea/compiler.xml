@@ -13,4 +13,9 @@
       <module name="Downloads" target="1.5" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="java" options="-extdirs $PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
+    </option>
+  </component>
 </project>
