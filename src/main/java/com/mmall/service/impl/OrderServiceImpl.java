@@ -548,15 +548,15 @@ public class OrderServiceImpl implements IOrderService {
 
     public ServiceResponse<String> manageSendGoods(Long orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        if (order == null) {
-            return ServiceResponse.createByErrorMessage("该订单不存在");
+        if (order != null) {
+            if (order.getStatus() == Const.orderStatusEnum.PAID.getCode() ) {
+                order.setStatus(Const.orderStatusEnum.SHIPPED.getCode());
+                order.setSendTime(new Date());
+                orderMapper.updateByPrimaryKeySelective(order);
+                return ServiceResponse.createBySuccessMessage("发货成功");
+            }
         }
-        if (order.getStatus() == Const.orderStatusEnum.PAID.getCode() ) {
-            order.setStatus(Const.orderStatusEnum.SHIPPED.getCode());
-            order.setSendTime(new Date());
-            orderMapper.updateByPrimaryKeySelective(order);
-            return ServiceResponse.createBySuccessMessage("发货成功");
-        }
+        return ServiceResponse.createByErrorMessage("该订单不存在");
     }
 
 
