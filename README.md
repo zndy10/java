@@ -1,1 +1,1 @@
-this is mysq first java pro ject
+this is my first java project
